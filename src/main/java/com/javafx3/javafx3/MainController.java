@@ -1,12 +1,14 @@
 package com.javafx3.javafx3;
 
 import com.javafx3.javafx3.impl.Moniter;
+import com.javafx3.javafx3.utils.YamlReader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import lombok.Data;
 
 import java.awt.*;
@@ -14,7 +16,7 @@ import java.net.URI;
 import java.util.Date;
 
 @Data
-public class HelloController {
+public class MainController {
     @FXML
     private Label welcomeText;
 
@@ -33,15 +35,14 @@ public class HelloController {
     @FXML
     private TextArea logTextArea;
 
+    private Stage stage;
+
+    private String forwordUrl = "www.binance.com/zh-CN/futures/";
+
     // 控制监控的逻辑单元
     private Moniter moniter;
     private boolean isMonitoringActive = false;
     private Integer logCount = 0;
-
-    @FXML
-    protected void onForwordButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     protected void onStartButtonClick() {
@@ -65,30 +66,41 @@ public class HelloController {
 
     @FXML
     public void parperInsert() {
-        //timeParam.setText("10m");
-        price.setText("118.3-130.5");
-        token.setText("XMRUSDT");
+        if(price.getText()==null || price.getText().length()==0){
+            String token = (String)YamlReader.instance.getValueByKey("token");
+            String price = (String)YamlReader.instance.getValueByKey("priceRange");
+
+            this.price.setText(price);
+            this.token.setText(token);
+            setLog(token+"++"+price);
+        }
+
     }
 
+    public static void main(String[] args) {
+        String aaaa =(String) YamlReader.instance.getValueByKey("moniter");
+        System.out.println(aaaa);
+    }
+
+
+    /**
+     * 点击跳转网页
+     */
     @FXML
     private void handleOpenWebPage() {
         try {
             Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.BROWSE)) {
-                // 设置要打开的网址
-                String baseUrl = "www.binance.com/zh-CN/futures/";
-                if(token.getText() !=null && token.getText().length()>0){
-                    baseUrl += token.getText();
+                if(! forwordUrl.contains("usdt")){
                 }else {
-                    baseUrl += "XMRUSDT";
+                    forwordUrl += "XMRUSDT";
                 }
-                URI uri = new URI(baseUrl);
+                URI uri = new URI(forwordUrl);
                 desktop.browse(uri);
-                setLog("打开网页: "+baseUrl);
+                setLog("打开网页: "+forwordUrl);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            // 在这里处理错误情况，例如弹出一个对话框提示用户错误信息
         }
     }
 

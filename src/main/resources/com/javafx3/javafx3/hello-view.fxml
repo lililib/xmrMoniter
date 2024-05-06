@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="559.0" prefWidth="849.0" spacing="20.0" xmlns="http://javafx3.com/javafx3/11.0.14-internal" xmlns:fx="http://javafx3.com/fxml/1" fx:controller="com.javafx3.javafx3.HelloController">
+<VBox alignment="CENTER" prefHeight="559.0" prefWidth="849.0" spacing="20.0" xmlns="http://javafx3.com/javafx3/11.0.14-internal" xmlns:fx="http://javafx3.com/fxml/1" fx:controller="com.javafx3.javafx3.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -28,7 +28,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="监听代币" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="代币" GridPane.rowIndex="1" />
                   <TextField fx:id="price" onMouseClicked="#parperInsert" prefHeight="14.0" prefWidth="690.0" promptText="115.2-130（小于115.2 大于130进行提示）" GridPane.columnIndex="1">
                      <font>
                         <Font size="14.0" />

@@ -5,6 +5,7 @@ module com.javafx3.javafx3 {
     requires cn.hutool.json;
     requires java.desktop;
     requires static lombok;
+    requires org.yaml.snakeyaml;
 
 
     opens com.javafx3.javafx3 to javafx.fxml;

@@ -1,0 +1,12 @@
+apiKey: p8LgRALOUqohFz
+secretKey: j7fmW4gfVzJQCsARl
+
+
+proxy:
+  host: 127.0.0.1
+  port: 10809
+
+
+token: XMRUSDT,BTCUSDT
+priceRange: 118.3-130.5,54000-650000
+
